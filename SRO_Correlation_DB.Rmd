@@ -1,0 +1,42 @@
+---
+title: 'Self Regulation Ontology Correlation DB'
+output:
+github_document:
+toc: false
+---
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gridExtra)
+library(lme4)
+library(GGally)
+library(jsonlite)
+library(psych)
+library(rmarkdown)
+library(psych)
+library(stringr)
+library(plotly)
+library(jsonlite)
+library(DT)
+sem <- function(x) {sd(x, na.rm=T) / sqrt(length(x))}
+render_this <- function(){rmarkdown::render('SRO_Correlation_DB.Rmd', output_dir = '/Users/zeynepenkavi/Dropbox/PoldrackLab/SRO_Correlation_DB', html_notebook(toc = F, toc_float = F, code_folding = 'hide'))}
+options(scipen = 1, digits = 4)
+```
+
+Read in data with correlations
+
+```{r}
+db <- read.csv('/Users/zeynepenkavi/Dropbox/PoldrackLab/SRO_Correlation_DB/All Correlations.csv')
+
+names(db) <- gsub("\\.", " ", names(db))
+```
+
+
+Pass in to and print as datatable
+
+```{r warning=FALSE}
+db %>%
+  datatable()
+```
